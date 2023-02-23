@@ -6,6 +6,12 @@ TagManager:
   tags:
   - ban
   - enemy
+  - blockE1
+  - boom
+  - point
+  - pointBlue
+  - pointRed
+  - pointYellow
   layers:
   - Default
   - TransparentFX

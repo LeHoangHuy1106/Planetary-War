@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Shooter : MonoBehaviour
 {
-    public GameObject ban;
-    GameObject Player;
+    [SerializeField]
+    private GameObject bullet1, bullet2, bullet3;
+
     float time = 0.2f;
     float limit;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-
-        Player = GameObject.Find("Player");
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -21,7 +23,7 @@ public class Shooter : MonoBehaviour
         if (Input.GetMouseButtonDown(0) && Time.time >= limit) 
         {
             shoot();
-            Debug.Log("co");
+
             limit = Time.time + time;
         }    
         
@@ -29,7 +31,10 @@ public class Shooter : MonoBehaviour
 
     void shoot()
     {
-        Instantiate(ban, Player.transform.position, ban.transform.rotation);
+        rb.AddForce(new Vector3(0, 0, -2000f));
+        Instantiate(bullet1, transform.position, bullet1.transform.rotation);
+
+
     }
 
 }
