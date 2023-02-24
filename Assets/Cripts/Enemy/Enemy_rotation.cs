@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_rotation : MonoBehaviour
+public class Enemy_rotation : Enemys
 {
-    GameObject player;
     Rigidbody rb;
     float speedV;
     // Start is called before the first frame update
     void Start()
        
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        
         rb = GetComponent<Rigidbody>();
         speedV = 5.0f;
         if (player !=null)

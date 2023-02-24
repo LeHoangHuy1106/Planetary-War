@@ -12,6 +12,8 @@ TagManager:
   - pointBlue
   - pointRed
   - pointYellow
+  - spaceship
+  - shootSpaceship
   layers:
   - Default
   - TransparentFX

@@ -5,7 +5,7 @@ using UnityEngine;
 public class TrapEnemyController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject enemy1, enemy2;
+    private GameObject enemy1, enemy2, enemy3, player;
 
 
 
@@ -25,29 +25,27 @@ public class TrapEnemyController : MonoBehaviour
 
         yield return new WaitForSeconds(Random.Range(2f, 5f));
 
-        int i = Random.Range(0, 3);
+        int i = Random.Range(0, 101);
         Vector3 t;
         t.z = 2;
         t.x = Random.Range(-14, 14);
         t.y = 30;
-
-
-        switch (i)
+        GameObject enemy;
+        if ( i <45)
         {
-            case 0:
-                Instantiate(enemy1, t, transform.rotation);
-
-                break;
-            case 1:
-                Instantiate(enemy2, t, transform.rotation);
-
-                break;
-            case 3:
-                Instantiate(enemy1, t, transform.rotation);
-
-                break;
+            enemy= Instantiate(enemy1, t, transform.rotation);
+            
         }
-
+        else if (i<80)
+        {
+            enemy= Instantiate(enemy2, t, transform.rotation);
+        }
+        else
+        {
+            enemy = Instantiate(enemy3, t, enemy3.transform.rotation);
+            
+        }
+        enemy.GetComponent<Enemys>().SetPlayer(player);
 
         StartCoroutine(CreatePlanes());
 
