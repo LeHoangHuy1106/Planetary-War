@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Enemy_SpaceShip : Enemys
 {
- 
-    
+
+
     Rigidbody rb;
     [SerializeField]
     private GameObject tallet;
@@ -16,17 +16,17 @@ public class Enemy_SpaceShip : Enemys
     // Start is called before the first frame update
     void Start()
     {
-        
+
 
         rb = GetComponent<Rigidbody>();
 
-      
+
         rb.velocity = Vector3.forward * -3f;
 
-        
+
         StartCoroutine(shoot());
     }
-    
+
 
     // Update is called once per frame
     void Update()
@@ -47,12 +47,12 @@ public class Enemy_SpaceShip : Enemys
 
         if (transform.localPosition.z < -4)
         {
-           
+
             tempTallet = tallet;
             Vector3 t = transform.localPosition;
             Instantiate(tempTallet, t, transform.rotation);
         }
-        
+
         StartCoroutine(shoot());
     }
     private void OnCollisionEnter(Collision collision)
@@ -61,16 +61,21 @@ public class Enemy_SpaceShip : Enemys
         {
             Destroy(collision.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);
-            if (collision.gameObject.CompareTag("ban"))
+
+            if (count <= 9)
             {
-                if (count <= 9)
+                if (collision.gameObject.CompareTag("ban"))
                 {
                     count++;
                 }
-                else
+                else if (collision.gameObject.CompareTag("ban"))
                 {
-                    Destroy(gameObject);
+                    count += 2;
                 }
+            }
+            else
+            {
+                Destroy(gameObject);
             }
         }
 
@@ -81,17 +86,23 @@ public class Enemy_SpaceShip : Enemys
         {
             Destroy(other.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);
-            if (other.tag == "ban")
+
+            if (count <= 9)
             {
-                if (count <= 9)
+                if (other.tag == "ban")
                 {
                     count++;
                 }
-                else
+                else if (other.tag == "ban3")
                 {
-                    Destroy(gameObject);
+                    count += 2;
                 }
             }
+            else
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 

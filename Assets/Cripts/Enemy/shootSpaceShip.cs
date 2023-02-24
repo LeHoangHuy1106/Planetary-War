@@ -34,12 +34,12 @@ public class shootSpaceShip : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("spaceship"))
-            {
+        {
             Destroy(collision.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);
             if (collision.gameObject.CompareTag("ban"))
             {
-                if (count<=2)
+                if (count <= 2)
                 {
                     count++;
                 }
@@ -48,8 +48,15 @@ public class shootSpaceShip : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            if (collision.gameObject.CompareTag("ban3"))
+            {
+
+                Destroy(gameObject);
+
+            }
+
         }
-        
+
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -68,6 +75,11 @@ public class shootSpaceShip : MonoBehaviour
                     Destroy(gameObject);
                 }
             }
+            if (other.tag == "ban3")
+            {
+                Destroy(gameObject);
+            }
+
         }
     }
 
