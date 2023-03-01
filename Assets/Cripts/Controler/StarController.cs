@@ -5,7 +5,7 @@ using UnityEngine;
 public class StarController : MonoBehaviour
 {
     [SerializeField]
-    private GameObject star1, star2, star3;
+    private GameObject star1, star2, star3, HP;
 
 
 
@@ -31,17 +31,21 @@ public class StarController : MonoBehaviour
         t.x = Random.Range(-14, 14);
         t.y = 30;
 
-        if (i < 50)
+        if (i < 75)
         {
             Instantiate(star1, t, transform.rotation);
         }
-        else if (i < 80)
+        else if (i < 90)
         {
             Instantiate(star2, t, transform.rotation);
         }
-        else
+        else if (i <95)
         {
             Instantiate(star3, t, transform.rotation);
+        }
+        else
+        {
+            Instantiate(HP, t, transform.rotation);
         }
 
         StartCoroutine(CreateStars());

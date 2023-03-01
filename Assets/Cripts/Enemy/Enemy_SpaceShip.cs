@@ -57,7 +57,7 @@ public class Enemy_SpaceShip : Enemys
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("spaceship"))
+        if (!collision.gameObject.CompareTag("spaceship") && !collision.gameObject.CompareTag("block") && !collision.gameObject.CompareTag("shootSpaceship"))
         {
             Destroy(collision.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);
@@ -82,7 +82,7 @@ public class Enemy_SpaceShip : Enemys
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "spaceship")
+        if (other.tag != "spaceship" && other.tag != "block" && other.tag != "shootSpaceship")
         {
             Destroy(other.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);

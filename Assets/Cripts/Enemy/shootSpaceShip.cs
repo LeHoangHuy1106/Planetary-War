@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shootSpaceShip : MonoBehaviour
+public class shootSpaceShip : Point
 {
     GameObject player;
     Rigidbody rb;
@@ -33,52 +33,73 @@ public class shootSpaceShip : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!collision.gameObject.CompareTag("spaceship"))
+        if (!(collision.gameObject.CompareTag("spaceship") && (collision.gameObject.CompareTag("block"))))
         {
-            Destroy(collision.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);
-            if (collision.gameObject.CompareTag("ban"))
+
+            if (collision.gameObject.CompareTag("Player"))
             {
-                if (count <= 2)
+
+
+            }
+            else
+            {
+                Destroy(collision.gameObject);
+
+                if (collision.gameObject.CompareTag("ban"))
                 {
-                    count++;
+                    if (count <= 2)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
                 }
-                else
+                if (collision.gameObject.CompareTag("ban3"))
                 {
+
                     Destroy(gameObject);
+
                 }
             }
-            if (collision.gameObject.CompareTag("ban3"))
-            {
 
-                Destroy(gameObject);
-
-            }
 
         }
 
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag != "spaceship")
+        if (other.tag != "spaceship" && other.tag != "block")
         {
-            Destroy(other.gameObject);
             Instantiate(boom, gameObject.transform.localPosition, transform.rotation);
-            if (other.tag == "ban")
+            if (other.tag == "Player")
             {
-                if (count <= 2)
+                
+            }
+            else
+            {
+                Destroy(other.gameObject);
+
+                if (other.tag == "ban")
                 {
-                    count++;
+                    if (count <= 2)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        Destroy(gameObject);
+                    }
                 }
-                else
+                if (other.tag == "ban3")
                 {
                     Destroy(gameObject);
                 }
+
             }
-            if (other.tag == "ban3")
-            {
-                Destroy(gameObject);
-            }
+
 
         }
     }

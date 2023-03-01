@@ -6,7 +6,7 @@ public class TrapRockController : MonoBehaviour
 {
     [SerializeField]
     private GameObject rock1, rock2, rock3;
-    float scale;
+    int scale;
 
 
 

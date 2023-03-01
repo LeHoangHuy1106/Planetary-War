@@ -2,15 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shoot2Moving : MonoBehaviour
+public class shoot2Moving : Point
 {
     Rigidbody rb;
-    float speed = 10f;
-
+    float speed = 20f;
     // count enemy dead
     int count;
-
-
     [SerializeField]
     private GameObject boom;
 
@@ -33,7 +30,7 @@ public class shoot2Moving : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (count <=2)
+        if (count <= 2)
         {
             if (collision.gameObject.CompareTag("enemy"))
             {
@@ -41,23 +38,31 @@ public class shoot2Moving : MonoBehaviour
                 Instantiate(boom, transform.localPosition, transform.rotation);
 
                 Destroy(collision.gameObject);
+                pointController.SetPoint(1);
+                count++;
+            }
+
+            else if(collision.gameObject.CompareTag("spaceship"))
+            {
+                pointController.SetPoint(1);
                 count++;
             }
         }
+
         else
+
         {
-            Destroy(collision.gameObject);
             Destroy(gameObject);
-        }    
+        }
     }
     public void OnTriggerEnter(Collider other)
     {
-        if (count <= 2)
+        if (count <= 3)
         {
             if (other.tag == "enemy")
             {
-               
-                
+
+                pointController.SetPoint(1);
                 Destroy(other.gameObject);
                 Instantiate(boom, transform.localPosition, transform.rotation);
             }
@@ -80,12 +85,17 @@ public class shoot2Moving : MonoBehaviour
                 Instantiate(boom, transform.localPosition, transform.rotation);
 
             }
+            else if (other.tag == "spaceship")
+            {
+                pointController.SetPoint(1);
+                Instantiate(boom, transform.localPosition, transform.rotation);
+            }
             count++;
+
         }
         else
+
         {
-            Instantiate(boom, transform.localPosition, transform.rotation);
-            Destroy(other.gameObject);
             Destroy(gameObject);
         }
 

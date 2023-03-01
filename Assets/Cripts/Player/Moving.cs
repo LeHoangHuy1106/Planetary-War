@@ -8,23 +8,31 @@ public class Moving : MonoBehaviour
 
     [SerializeField]
     private float speed = 100f;
-    
+
     [SerializeField]
     private GameObject boom;
-    
+
     [SerializeField]
     private GameObject soundController;
-    
+
     [SerializeField]
     private AudioClip clip;
-    
+
     private AudioSource audio;
 
-// Start is called before the first frame update
-void Start()
+    [SerializeField]
+    private PointController pointController;
+
+    private Animator anim;
+
+    // Start is called before the first frame update
+    void Start()
     {
         rb = GetComponent<Rigidbody>();
         audio = soundController.GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+
+
 
 
     }
@@ -32,9 +40,18 @@ void Start()
     // Update is called once per frame
     void Update()
     {
+        changeAnimation();
         moving();
         limit();
+
     }
+
+    void changeAnimation()
+    {
+        anim.SetBool("isWounded", true);
+        anim.SetBool("isWounded", false);
+    }
+
     void moving()
     {
         float moveHorizontal = Input.GetAxis("Horizontal");
@@ -55,6 +72,19 @@ void Start()
     }
 
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("spaceship"))
+        {
+            Debug.Log("yyyyyyyyyyyyyyyyy");
+            pointController.SetHP(-1);
+            if (pointController.GetHP() <= 0)
+            {
+                Destroy(gameObject);
+
+            }
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -63,29 +93,60 @@ void Start()
         if (other.tag == "enemy")
         {
             Instantiate(boom, transform.localPosition, transform.rotation);
-            Destroy(gameObject);
             Destroy(other.gameObject);
+            pointController.SetHP(-1);
+            changeAnimation();
+            if (pointController.GetHP() <= 0)
+            {
+                Destroy(gameObject);
+            }
 
         }
         else if (other.tag == "pointBlue")
         {
             Destroy(other.gameObject);
             audio.clip = clip;
+
             audio.Play();
+            pointController.SetPointBlue(3);
         }
         else if (other.tag == "pointYellow")
         {
             Destroy(other.gameObject);
             audio.clip = clip;
             audio.Play();
-        }   
+            pointController.SetPointYellow(1);
+        }
         else if (other.tag == "pointRed")
         {
             Destroy(other.gameObject);
             audio.clip = clip;
             audio.Play();
-        }    
+            pointController.SetPointRed(5);
+        }
+        else if (other.tag == "HP")
+        {
+            Destroy(other.gameObject);
+            audio.clip = clip;
+            audio.Play();
+            pointController.SetHP(1);
+        }
+        else if (other.tag == "spaceship")
+        {
+            
+           
+            pointController.SetHP(-1);
+            changeAnimation();
+            if (pointController.GetHP() <= 0)
+            {
+                Destroy(gameObject);
+               
+            }
+            
+          
+        }
     }
+
 
 
 }

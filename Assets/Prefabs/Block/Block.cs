@@ -8,4 +8,8 @@ public class Block : MonoBehaviour
     {
         Destroy(other.gameObject);
     }
+    private void OnCollisionExit(Collision collision)
+    {
+        Destroy(collision.gameObject);
+    }
 }

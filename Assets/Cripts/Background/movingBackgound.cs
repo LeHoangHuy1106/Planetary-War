@@ -15,10 +15,10 @@ public class movingBackgound : MonoBehaviour
 
     private void Update()
     {
-        if ( transform.localPosition.z <=-29.7f)
+        if ( transform.localPosition.z <=270f)
 
         {
-            transform.localPosition = new Vector3(0, 0, 245.6f);
+            transform.localPosition = new Vector3(0, 0, 545f);
         }
     }
 }

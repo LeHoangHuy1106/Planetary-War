@@ -31,12 +31,12 @@ public class TrapEnemyController : MonoBehaviour
         t.x = Random.Range(-14, 14);
         t.y = 30;
         GameObject enemy;
-        if ( i <45)
+        if ( i <60)
         {
             enemy= Instantiate(enemy1, t, transform.rotation);
             
         }
-        else if (i<80)
+        else if (i<90)
         {
             enemy= Instantiate(enemy2, t, transform.rotation);
         }
