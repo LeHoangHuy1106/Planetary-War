@@ -13,8 +13,10 @@ TagManager:
   - pointRed
   - pointYellow
   - spaceship
-  - shootSpaceship
   - ban3
+  - HP
+  - block
+  - shootSpaceship
   layers:
   - Default
   - TransparentFX

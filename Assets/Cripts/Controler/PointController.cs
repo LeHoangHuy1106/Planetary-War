@@ -69,6 +69,7 @@ public class PointController : MonoBehaviour
         textHP.text = "" + HP;
         if (HP<=0)
         {
+           
             panelGameOver.active = (true);
             if (point >= getHightestPoint() )
             {             

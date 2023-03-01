@@ -30,7 +30,7 @@ public class shoot2Moving : Point
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (count <= 2)
+        if (count <= 3)
         {
             if (collision.gameObject.CompareTag("enemy"))
             {
