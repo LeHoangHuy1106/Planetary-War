@@ -53,6 +53,7 @@ public class shoot2Moving : Point
 
         {
             Destroy(gameObject);
+            Destroy(collision.gameObject);
         }
     }
     public void OnTriggerEnter(Collider other)
@@ -97,6 +98,7 @@ public class shoot2Moving : Point
 
         {
             Destroy(gameObject);
+            Destroy(other.gameObject);
         }
 
     }

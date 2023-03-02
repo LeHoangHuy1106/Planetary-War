@@ -17,6 +17,7 @@ TagManager:
   - HP
   - block
   - shootSpaceship
+  - shootUFO
   layers:
   - Default
   - TransparentFX

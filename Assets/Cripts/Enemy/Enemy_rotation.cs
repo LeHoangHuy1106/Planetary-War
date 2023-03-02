@@ -5,14 +5,15 @@ using UnityEngine;
 public class Enemy_rotation : Enemys
 {
     Rigidbody rb;
-    float speedV;
+    [SerializeField]
+    float speedV = 5f;
     // Start is called before the first frame update
     void Start()
        
     {
         
         rb = GetComponent<Rigidbody>();
-        speedV = 5.0f;
+
         if (player !=null)
         {
             StartCoroutine(ChangeVelocity());

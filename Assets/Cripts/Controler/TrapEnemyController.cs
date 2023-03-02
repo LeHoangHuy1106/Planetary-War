@@ -7,6 +7,8 @@ public class TrapEnemyController : MonoBehaviour
     [SerializeField]
     private GameObject enemy1, enemy2, enemy3, player;
 
+    private int level;
+    private float start, end;
 
 
 
@@ -15,6 +17,27 @@ public class TrapEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        level  = PlayerPrefs.GetInt("level", 0);
+
+        Debug.Log("Level is choosed:" + level);
+
+        if (level == 0)
+        {
+            start = 3.0f;
+            end = 6.0f;
+        }    
+        else if (level == 1)
+        {
+            start = 2.0f;
+            end = 4.0f;
+        }
+        else if (level == 2)
+        {
+            start = 1.0f;
+            end = 3.0f;
+        }
+
 
         StartCoroutine(CreatePlanes());
     }
@@ -23,7 +46,7 @@ public class TrapEnemyController : MonoBehaviour
     IEnumerator CreatePlanes()
     {
 
-        yield return new WaitForSeconds(Random.Range(2f, 5f));
+        yield return new WaitForSeconds(Random.Range(start, end));
 
         int i = Random.Range(0, 101);
         Vector3 t;

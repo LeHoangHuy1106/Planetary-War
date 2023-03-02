@@ -59,9 +59,10 @@ public class Moving : MonoBehaviour
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         rb.velocity = movement * speed;
         rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -4f);
+        
 
     }
-
+    
     void limit()
     {
         Vector3 T = transform.localPosition;
@@ -76,7 +77,7 @@ public class Moving : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("spaceship"))
         {
-            Debug.Log("yyyyyyyyyyyyyyyyy");
+          
             pointController.SetHP(-1);
             if (pointController.GetHP() <= 0)
             {

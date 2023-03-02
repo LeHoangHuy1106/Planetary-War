@@ -35,6 +35,38 @@ public class UIController : MonoBehaviour
         Application.LoadLevel("Main");
 
     }
+
+    public void levelEasy()
+    {
+        audioPlay();
+        Application.LoadLevel("Main");
+
+        PlayerPrefs.SetInt("level", 0);
+        PlayerPrefs.Save();
+    }
+    public void levelMedium()
+    {
+        audioPlay();
+        Application.LoadLevel("Main");
+
+        PlayerPrefs.SetInt("level", 1);
+        PlayerPrefs.Save();
+    }
+    public void levelHigh()
+    {
+        audioPlay();
+        Application.LoadLevel("Main");
+
+        PlayerPrefs.SetInt("level", 2);
+        PlayerPrefs.Save();
+    }
+
+    public void optionMenu()
+    {
+        audioPlay();
+        Application.LoadLevel("OptionMenu");
+
+    }    
     public void back()
     {
         Time.timeScale = 1;
@@ -50,6 +82,7 @@ public class UIController : MonoBehaviour
 
     public void paused()
     {
+
         panelPause.active = true;
         Time.timeScale = 0;
         audioPlay();

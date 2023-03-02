@@ -7,6 +7,8 @@ public class TrapRockController : MonoBehaviour
     [SerializeField]
     private GameObject rock1, rock2, rock3;
     int scale;
+    private int level;
+    private float start, end;
 
 
 
@@ -17,6 +19,26 @@ public class TrapRockController : MonoBehaviour
     void Start()
     {
 
+        level = PlayerPrefs.GetInt("level", 0);
+
+        Debug.Log("Level is choosed:" + level);
+
+        if (level == 0)
+        {
+            start = 3.0f;
+            end = 6.0f;
+        }
+        else if (level == 1)
+        {
+            start = 2.0f;
+            end = 4.0f;
+        }
+        else if (level == 2)
+        {
+            start = 1.0f;
+            end = 3.0f;
+        }
+
         StartCoroutine(CreatePlanes());
     }
 
@@ -24,8 +46,8 @@ public class TrapRockController : MonoBehaviour
     IEnumerator CreatePlanes()
     {
 
-        yield return new WaitForSeconds(Random.Range(1f, 3f));
-        
+        yield return new WaitForSeconds(Random.Range(start, end));
+
         int i = Random.Range(0, 3);
         Vector3 t;
         t.z = 2;

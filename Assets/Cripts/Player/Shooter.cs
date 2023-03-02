@@ -6,7 +6,7 @@ using UnityEngine;
 public class Shooter : MonoBehaviour
 {
     [SerializeField]
-    private GameObject bullet1, bullet2, bullet3;
+    private GameObject bullet1, bullet2, bullet3, UFO;
 
     [SerializeField]
     private PointController pointController;
@@ -38,12 +38,12 @@ public class Shooter : MonoBehaviour
             audio.clip = clip;
             audio.Play();
         }
-        
+
         if (Input.GetMouseButtonDown(0))
         {
             shoot();
         }
-        
+
 
 
 
@@ -62,11 +62,11 @@ public class Shooter : MonoBehaviour
     void chooseBullet()
     {
         GameObject bullet;
-        switch ((i % 3))
+        switch ((i % 4))
         {
             case 0:
                 {
-                    if (pointController.GetPointRed() >= 1)
+                    if (pointController.GetPointRed() > 0)
                     {
                         rb.AddForce(new Vector3(0, 0, -2000f));
                         bullet = Instantiate(bullet1, transform.position, bullet1.transform.rotation);
@@ -95,6 +95,19 @@ public class Shooter : MonoBehaviour
                         rb.AddForce(new Vector3(0, 0, -2000f));
                         bullet = Instantiate(bullet3, transform.position, bullet3.transform.rotation);
                         bullet.GetComponent<Point>().SetPointController(pointController);
+                        pointController.SetPointYellow(-1);
+                    }
+                    break;
+                }
+            case 3:
+                {
+                    if (pointController.GetPointYellow() > 0 && pointController.GetPointBlue() > 0 && pointController.GetPointRed() > 0)
+                    {
+                        rb.AddForce(new Vector3(0, 0, -2000f));
+                        bullet = Instantiate(UFO, transform.position, bullet3.transform.rotation);
+                        bullet.GetComponent<Point>().SetPointController(pointController);
+                        pointController.SetPointRed(-1);
+                        pointController.SetPointBlue(-1);
                         pointController.SetPointYellow(-1);
                     }
                     break;

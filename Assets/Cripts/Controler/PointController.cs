@@ -44,17 +44,17 @@ public class PointController : MonoBehaviour
     public void SetPointRed(int i)
     {
        
-        pointRed = Mathf.Min(pointRed += i, 30);
+        pointRed = Mathf.Min(pointRed += i, 50);
         textRed.text = "" + pointRed;
     }
     public void SetPointBlue(int i)
     {
-        pointBlue = Mathf.Min(pointBlue += i, 30);
+        pointBlue = Mathf.Min(pointBlue += i, 50);
         textBlue.text = "" + pointBlue;
     }
     public void SetPointYellow(int i)
     {
-        pointYellow = Mathf.Min(pointYellow += i, 30);
+        pointYellow = Mathf.Min(pointYellow += i, 50);
         textYellow.text = "" + pointYellow;
     }
     public void SetPoint(int i)
